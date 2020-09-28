@@ -15,7 +15,7 @@ sequelize
   .sync()
   .then(() => {
     app.listen(env.app.port, () => {
-      console.log(`Server listening on port ${env.app.port}!`);
+      console.log(`Server listening on port ${env.app.port || 3001}!`);
     });
   })
   .catch(error => console.log(error));
