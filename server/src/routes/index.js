@@ -7,10 +7,10 @@ const router = express.Router();
 
 // Shelves
 router.get('/shelves', shelfController.getShelves);
-// router.get('/projects/:id', projectController.getProjectById);
-router.post('/project', shelfController.createShelf);
-// router.put('/project/:id', projectController.updateProject);
-// router.delete('/project/:id', projectController.deleteProject);
+router.post('/shelf', shelfController.createShelf);
+router.put('/shelf/:id', shelfController.updateShelf);
+router.delete('/shelf/:id', shelfController.deleteShelf);
+router.get('/shelves/:id', shelfController.getShelfById);
 
 // Tasks
 // router.get('/project/:id/tasks', taskController.getTasks);
