@@ -1,10 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import T from 'prop-types';
 
-import CreateShelfForm from '../../components/CreateShelfForm';
-import api from '../../api/index'
+import ShelfForm from '../../components/ShelfForm';
+import { createShelf } from '../../api/index';
 
-const CreateShelfFormContainer = () => {
+const ShelfFormContainer = () => {
   const [state, setState] = useState({
     name: '',
     description: ''
@@ -22,25 +22,18 @@ const CreateShelfFormContainer = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     
-    api.post('/shelf', {
-      ...state
-    })
-    .then((res) => {
+    createShelf(state)
+    .then(() => {
       setState({
         name: '',
         description: ''
       })
-      console.log('response', res)
     })
     .catch((err) => console.log('error', err.message))
-
-    // api.get('/shelves')
-    // .then((res) => console.log('response', res))
-    // .catch((err) => console.log('error', err.message))
   }
 
   return (
-    <CreateShelfForm
+    <ShelfForm
       state={state}
       onChange={onChange}
       onSubmit={onSubmit}
@@ -48,6 +41,6 @@ const CreateShelfFormContainer = () => {
   )
 }
 
-CreateShelfFormContainer.propTypes = {};
+ShelfFormContainer.propTypes = {};
 
-export default CreateShelfFormContainer;
+export default ShelfFormContainer;

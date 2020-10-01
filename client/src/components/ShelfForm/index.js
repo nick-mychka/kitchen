@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-const CreateShelfForm = ({state: {name, description}, onChange, onSubmit}) => {
+const ShelfForm = ({state: {name, description}, onChange, onSubmit}) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
@@ -33,11 +33,11 @@ const CreateShelfForm = ({state: {name, description}, onChange, onSubmit}) => {
   )
 }
 
-CreateShelfForm.propTypes = {
+ShelfForm.propTypes = {
   description: T.string,
   name: T.string.isRequired,
   onChange: T.func.isRequired,
   onSubmit: T.func.isRequired
 };
 
-export default CreateShelfForm;
+export default ShelfForm;

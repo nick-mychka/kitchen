@@ -4,4 +4,5 @@ const http = axios.create({
   baseURL: "/api",
 });
 
-export default http;
+export const getShelves = () => http.get('/shelves');
+export const createShelf = (data) => http.post('/shelf', {...data});
