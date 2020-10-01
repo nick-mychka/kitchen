@@ -29,12 +29,14 @@ const ShelfFormContainer = () => {
         description: ''
       })
     })
-    .catch((err) => console.log('error', err.message))
+    .catch((err) => {
+      throw new Error(`error: ${err.message}`)
+    })
   }
 
   return (
     <ShelfForm
-      state={state}
+      data={state}
       onChange={onChange}
       onSubmit={onSubmit}
     />

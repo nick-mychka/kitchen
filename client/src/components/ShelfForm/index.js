@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-const ShelfForm = ({state: {name, description}, onChange, onSubmit}) => {
+const ShelfForm = ({data: {name, description}, onChange, onSubmit}) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
