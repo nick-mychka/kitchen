@@ -1,7 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 
-const ShelfForm = ({shelfInfo: {name, description}, onChange, onSubmit}) => {
+const ShelfForm = ({shelfInfo: {name, description}, onChange, onSubmit, mode}) => {
   return (
     <form onSubmit={onSubmit}>
       <div className="form-group">
@@ -28,7 +28,11 @@ const ShelfForm = ({shelfInfo: {name, description}, onChange, onSubmit}) => {
           onChange={onChange}
         />
       </div>
-      <button type="submit" className="btn btn-primary">Create</button>
+      <button 
+        type="submit" 
+        className="btn btn-primary">
+          {mode === 'update' ? 'Save' : 'Create'}
+        </button>
     </form>
   )
 }

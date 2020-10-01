@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import T from 'prop-types';
 
 import Store from '../../components/Store';
-import { createShelf, deleteShelf, getShelves } from '../../api';
+import { createShelf, deleteShelf, getShelves, updateShelf } from '../../api';
 
 const DashboardContainer = () => {
   const [shelves, setShelves] = useState([]);
+  const [mode, setMode] = useState('create')
   const [shelfInfo, setShelfInfo] = useState({
     name: '',
     description: ''
@@ -33,22 +34,41 @@ const DashboardContainer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    createShelf(shelfInfo)
-    .then((res) => {
-      const newShelf = res.data.data;
+    if (mode === 'update') {
+      updateShelf(shelfInfo).then((res) => {
+        const updatedShelf = res.data.data;
+        const filteredShelves = shelves.filter(({id}) => id !== updatedShelf.id)
 
-      setShelfInfo({
-        name: '',
-        description: ''
-      });
-      setShelves((prevState) => ([
-        ...prevState,
-        newShelf
-      ]))
-    })
-    .catch((err) => {
-      throw new Error(`error: ${err.message}`)
-    })
+        setShelves([
+          ...filteredShelves,
+          updatedShelf
+        ])
+        setShelfInfo({
+          name: '',
+          description: ''
+        });
+        setMode('create')
+      })
+    } 
+
+    if (mode === 'create') {
+      createShelf(shelfInfo)
+      .then((res) => {
+        const newShelf = res.data.data;
+  
+        setShelfInfo({
+          name: '',
+          description: ''
+        });
+        setShelves((prevState) => ([
+          ...prevState,
+          newShelf
+        ]))
+      })
+      .catch((err) => {
+        throw new Error(`error: ${err.message}`)
+      })
+    }
   }
 
   const handleShelfDelete = (shelfId) => {
@@ -60,13 +80,22 @@ const DashboardContainer = () => {
     })
   }
 
+  const handleShelfUpdate = (shelfId) => {
+    const shelfInfo = shelves.find(({id}) => id === shelfId);
+
+    setMode('update')
+    setShelfInfo(shelfInfo);
+  }
+
   return (
     <Store
+      mode={mode}
       shelves={shelves}
       shelfInfo={shelfInfo}
       onChange={handleInputChange}
       onSubmit ={handleSubmit}
       handleDelete={handleShelfDelete}
+      handleUpdate={handleShelfUpdate}
     />
   )
 };

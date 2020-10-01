@@ -1,7 +1,7 @@
 import React from 'react'
 import T from 'prop-types'
 
-const ShelfList = ({shelves, handleDelete}) => {
+const ShelfList = ({shelves, handleDelete, handleUpdate}) => {
   return (
     <div>
       <ul>
@@ -10,7 +10,12 @@ const ShelfList = ({shelves, handleDelete}) => {
             <div>name: {name}</div>
             <div>description: {description}</div>
             <div>
-              <button className="btn btn-success mr-2">Edit</button>
+              <button 
+                className="btn btn-success mr-2"
+                onClick={() => handleUpdate(id)}
+              >
+                Edit
+              </button>
               <button 
                 className="btn btn-danger"
                 onClick={() => handleDelete(id)}

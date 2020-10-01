@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import ShelfForm from '../ShelfForm';
 import ShelfList from '../ShelfList';
 
-const Store = ({shelves, shelfInfo, onChange, onSubmit, handleDelete}) => {
+const Store = ({shelves, shelfInfo, mode, onChange, onSubmit, handleDelete, handleUpdate}) => {
   return (
     <div className="dashboard-container">
       <div className="container">
@@ -55,6 +55,7 @@ const Store = ({shelves, shelfInfo, onChange, onSubmit, handleDelete}) => {
           <div className="row">
             <div className="col-12">
               <ShelfForm
+                mode={mode}
                 shelfInfo={shelfInfo}
                 onChange={onChange}
                 onSubmit={onSubmit}
@@ -65,6 +66,7 @@ const Store = ({shelves, shelfInfo, onChange, onSubmit, handleDelete}) => {
               <ShelfList
                 shelves={shelves}
                 handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
               />
             </div>
           </div>
