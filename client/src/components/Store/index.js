@@ -3,6 +3,7 @@ import T from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import ShelfForm from '../../containers/ShelfForm';
+import ShelfList from '../../containers/ShelfList';
 
 const Store = () => {
   return (
@@ -56,7 +57,8 @@ const Store = () => {
               <ShelfForm/>
             </div>
             <div className="col-12">
-              Shelf List
+              <h2>Shelf List</h2>
+              <ShelfList/>
             </div>
           </div>
         </div>
