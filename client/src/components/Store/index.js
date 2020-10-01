@@ -1,6 +1,7 @@
 import React from 'react';
 import T from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import CreateShelfForm from '../../containers/CreateShelfForm';
 
 const Store = () => {
   return (
@@ -47,6 +48,11 @@ const Store = () => {
               ])}
             </li>
           </ul>
+        </div>
+        <div className="row row-cols-1">
+          <div className="col-6">
+            <CreateShelfForm/>
+          </div>
         </div>
       </div>
     </div>

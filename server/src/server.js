@@ -14,7 +14,7 @@ app.use('/api', require('./routes/index'));
 sequelize
   .sync()
   .then(() => {
-    app.listen(env.app.port, () => {
+    app.listen(3001, () => {
       console.log(`Server listening on port ${env.app.port || 3001}!`);
     });
   })
