@@ -49,6 +49,9 @@ const DashboardContainer = () => {
         });
         setMode('create')
       })
+      .catch((err) => {
+        throw new Error(`error ${err.message}`)
+      })
     } 
 
     if (mode === 'create') {
