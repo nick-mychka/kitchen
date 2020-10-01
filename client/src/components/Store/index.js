@@ -2,10 +2,10 @@ import React from 'react';
 import T from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import ShelfForm from '../../containers/ShelfForm';
-import ShelfList from '../../containers/ShelfList';
+import ShelfForm from '../ShelfForm';
+import ShelfList from '../ShelfList';
 
-const Store = () => {
+const Store = ({shelves, shelfInfo, onChange, onSubmit, handleDelete}) => {
   return (
     <div className="dashboard-container">
       <div className="container">
@@ -54,11 +54,18 @@ const Store = () => {
         <div className="container">
           <div className="row">
             <div className="col-12">
-              <ShelfForm/>
+              <ShelfForm
+                shelfInfo={shelfInfo}
+                onChange={onChange}
+                onSubmit={onSubmit}
+              />
             </div>
             <div className="col-12">
               <h2>Shelf List</h2>
-              <ShelfList/>
+              <ShelfList
+                shelves={shelves}
+                handleDelete={handleDelete}
+              />
             </div>
           </div>
         </div>

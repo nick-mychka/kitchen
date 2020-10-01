@@ -1,14 +1,23 @@
 import React from 'react'
 import T from 'prop-types'
 
-const ShelfList = ({shelves}) => {
+const ShelfList = ({shelves, handleDelete}) => {
   return (
     <div>
       <ul>
         {shelves && shelves.map(({id, name, description}) => (
-          <li key={id}>
+          <li key={id} className="shadow p-2 mb-3">
             <div>name: {name}</div>
             <div>description: {description}</div>
+            <div>
+              <button className="btn btn-success mr-2">Edit</button>
+              <button 
+                className="btn btn-danger"
+                onClick={() => handleDelete(id)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
@@ -17,7 +26,8 @@ const ShelfList = ({shelves}) => {
 }
 
 ShelfList.propTypes = {
-  shelves: T.arrayOf(T.object)
+  shelves: T.arrayOf(T.object),
+  handleDelete: T.func.isRequired
 }
 
 export default ShelfList
