@@ -3,12 +3,12 @@ import T from 'prop-types'
 
 const ShelfList = ({shelves, handleDelete, handleUpdate}) => {
   return (
-    <div>
-      <ul>
-        {shelves && shelves.map(({id, name, description}) => (
-          <li key={id} className="shadow p-2 mb-3">
-            <div>name: {name}</div>
-            <div>description: {description}</div>
+    <>
+      {shelves && shelves.map(({id, name, description}) => (
+        <div className="card w-25 shadow m-2">
+          <div key={id} className="card-body">
+            <h5 className="card-title">{name}</h5>
+            <p className="card-text text-truncate">{description}</p>
             <div>
               <button 
                 className="btn btn-success mr-2"
@@ -23,10 +23,10 @@ const ShelfList = ({shelves, handleDelete, handleUpdate}) => {
                 Delete
               </button>
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </div>
+      ))}
+    </>
   )
 }
 

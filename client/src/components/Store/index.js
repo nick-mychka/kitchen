@@ -24,17 +24,10 @@ const Store = ({shelves, shelfInfo, mode, isOpen, onChange, onSubmit, handleModa
           </div>
         </div>
         <div className="row row-cols-1">
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className="col">
-              <h2>Shelf List</h2>
-              <ShelfList
-                shelves={shelves}
-                handleDelete={handleDelete}
-                handleUpdate={handleUpdate}
-              />
-              <div className="col text-right">
+          <div className="col">
+            <div className="d-flex justify-content-between">
+              <h2 className="text-left">Shelf List</h2>
+              <div className="text-right">
                 <button
                   className="btn btn-primary"
                   onClick={() => handleModal(true)}
@@ -44,7 +37,20 @@ const Store = ({shelves, shelfInfo, mode, isOpen, onChange, onSubmit, handleModa
               </div>
             </div>
           </div>
-        </div> 
+        </div>
+        <hr/>
+        <div className="row">
+          <div className="col row-cols-1">
+            <section className="d-flex flex-wrap justify-content-center my-2">
+              <ShelfList
+                shelves={shelves}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
+              />
+            </section>
+          </div>
+        </div>
+        <hr/>
       </div>
     </div>
     <Modal
