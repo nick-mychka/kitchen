@@ -5,7 +5,8 @@ import { createShelf, deleteShelf, getShelves, updateShelf } from '../../api';
 
 const DashboardContainer = () => {
   const [shelves, setShelves] = useState([]);
-  const [mode, setMode] = useState('create')
+  const [mode, setMode] = useState('create');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [shelfInfo, setShelfInfo] = useState({
     name: '',
     description: ''
@@ -38,6 +39,8 @@ const DashboardContainer = () => {
         const updatedShelf = res.data.data;
         const filteredShelves = shelves.filter(({id}) => id !== updatedShelf.id)
 
+        setMode('create');
+        setIsModalOpen(false);
         setShelves([
           ...filteredShelves,
           updatedShelf
@@ -46,7 +49,6 @@ const DashboardContainer = () => {
           name: '',
           description: ''
         });
-        setMode('create')
       })
       .catch((err) => {
         throw new Error(`error ${err.message}`)
@@ -87,17 +89,20 @@ const DashboardContainer = () => {
 
     setMode('update')
     setShelfInfo(shelfInfo);
+    setIsModalOpen(true);
   }
 
   return (
     <Store
       mode={mode}
+      isOpen={isModalOpen}
       shelves={shelves}
       shelfInfo={shelfInfo}
       onChange={handleInputChange}
       onSubmit ={handleSubmit}
       handleDelete={handleShelfDelete}
       handleUpdate={handleShelfUpdate}
+      handleModal={setIsModalOpen}
     />
   )
 };

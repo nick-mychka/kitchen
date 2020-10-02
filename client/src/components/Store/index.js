@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 import ShelfForm from '../ShelfForm';
 import ShelfList from '../ShelfList';
+import Modal from '../Modal';
 
-const Store = ({shelves, shelfInfo, mode, onChange, onSubmit, handleDelete, handleUpdate}) => {
+const Store = ({shelves, shelfInfo, mode, isOpen, onChange, onSubmit, handleModal, handleDelete, handleUpdate}) => {
   return (
+    <>
     <div className="dashboard-container">
       <div className="container">
         <div className="row row-cols-1">
@@ -22,64 +24,50 @@ const Store = ({shelves, shelfInfo, mode, onChange, onSubmit, handleDelete, hand
           </div>
         </div>
         <div className="row row-cols-1">
-          <ul>
-            <li className="mb-3">
-              <u>Add shelf</u>: <br />
-              <b>url</b>: /shelf, <br />
-              <b>request</b>: name, description, <br />
-              <b>result</b>: (id, name, description)
-            </li>
-            <li className="mb-3">
-              <u>Edit shelf</u>: <br />
-              <b>url</b>: /shelf/:id, <br />
-              <b>request</b>: (name, description), <br />
-              <b>result</b>: (id, name, description)
-            </li>
-            <li className="mb-3">
-              <u>Delete shelf</u>: <br />
-              <b>url</b>: /shelf/:id, <br />
-              <b>result</b>: (id)
-            </li>
-            <li>
-              <u>Get shelf</u>: <br />
-              <b>url</b>: /shelves <br />
-              <b>result</b>: <br />
-              {JSON.stringify([
-                { id: '1', name: 'Test 1', description: 'd' },
-                { id: '2', name: 'Test 2', description: 'dw' },
-              ])}
-            </li>
-          </ul>
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-12">
-              <ShelfForm
-                mode={mode}
-                shelfInfo={shelfInfo}
-                onChange={onChange}
-                onSubmit={onSubmit}
-              />
-            </div>
-            <div className="col-12">
+            <div className="col">
               <h2>Shelf List</h2>
               <ShelfList
                 shelves={shelves}
                 handleDelete={handleDelete}
                 handleUpdate={handleUpdate}
               />
+              <div className="col text-right">
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleModal(true)}
+                >
+                  Create Shelf
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </div> 
       </div>
     </div>
+    <Modal
+      isOpen={isOpen}
+      handleModal={handleModal}
+    >
+      <ShelfForm
+        mode={mode}
+        shelfInfo={shelfInfo}
+        onChange={onChange}
+        onSubmit={onSubmit}
+      />
+    </Modal>
+  </>
   );
 };
 
 Store.propTypes = {
   mode: T.string.isRequired,
+  isOpen: T.bool.isRequired,
   onSubmit: T.func.isRequired,
   onChange: T.func.isRequired,
+  handleModal: T.func.isRequired,
   handleDelete: T.func.isRequired,
   handleUpdate: T.func.isRequired,
   shelves: T.arrayOf(T.object).isRequired,
