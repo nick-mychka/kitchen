@@ -32,7 +32,8 @@ const ShelfList = ({shelves, handleDelete, handleUpdate}) => {
 
 ShelfList.propTypes = {
   shelves: T.arrayOf(T.object),
-  handleDelete: T.func.isRequired
+  handleDelete: T.func.isRequired,
+  handleUpdate: T.func.isRequired,
 }
 
 export default ShelfList

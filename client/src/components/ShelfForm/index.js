@@ -39,6 +39,7 @@ const ShelfForm = ({shelfInfo: {name, description}, onChange, onSubmit, mode}) =
 
 ShelfForm.propTypes = {
   description: T.string,
+  mode: T.string.isRequired,
   name: T.string.isRequired,
   onChange: T.func.isRequired,
   onSubmit: T.func.isRequired

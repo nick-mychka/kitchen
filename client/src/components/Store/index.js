@@ -76,6 +76,14 @@ const Store = ({shelves, shelfInfo, mode, onChange, onSubmit, handleDelete, hand
   );
 };
 
-Store.propTypes = {};
+Store.propTypes = {
+  mode: T.string.isRequired,
+  onSubmit: T.func.isRequired,
+  onChange: T.func.isRequired,
+  handleDelete: T.func.isRequired,
+  handleUpdate: T.func.isRequired,
+  shelves: T.arrayOf(T.object).isRequired,
+  shelfInfo: T.objectOf(T.any).isRequired,
+};
 
 export default Store;

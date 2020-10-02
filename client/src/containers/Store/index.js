@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import T from 'prop-types';
 
 import Store from '../../components/Store';
 import { createShelf, deleteShelf, getShelves, updateShelf } from '../../api';
@@ -102,7 +101,5 @@ const DashboardContainer = () => {
     />
   )
 };
-
-DashboardContainer.propTypes = {};
 
 export default DashboardContainer;

@@ -11,6 +11,9 @@ const Shelf = ({name, description}) => {
   )
 }
 
-Shelf.propTypes = {};
+Shelf.propTypes = {
+  name: T.string.isRequired,
+  description: T.string
+};
 
 export default Shelf;
