@@ -1,22 +1,21 @@
-const Sequelize = require('sequelize');
-
-const sequelize = require('../utils/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../db/connection';
 
 const Shelf = sequelize.define('shelf', {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
   name: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT,
+    type: DataTypes.TEXT,
     allowNull: true
   }
 });
 
-module.exports = Shelf;
+export default Shelf;
