@@ -5,7 +5,7 @@ export default models => {
   } = models;
 
   // Shelf.hasOne(Showcase);
-  // Shelf.belongsTo(Showcase);
+  Shelf.belongsTo(Showcase);
 
   // Showcase.hasMany(Shelf);
 };
