@@ -1,21 +1,30 @@
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import sequelize from './data/db/connection';
+import routes from './api/routes';
+
 import env from './env';
-
-const express = require('express');
-const bodyParser = require('body-parser');
-
-const sequelize = require('./utils/database');
 
 const app = express();
 
+sequelize
+  .authenticate()
+  .then(() => {
+    // eslint-disable-next-line no-console
+    console.log('Connection has been established successfully.');
+  })
+  .catch(error => {
+    // eslint-disable-next-line no-console
+    console.error('Unable to connect to the database:', error);
+  });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', require('./routes/index'));
 
-sequelize
-  .sync()
-  .then(() => {
-    app.listen(env.app.port, () => {
-      console.log(`Server listening on port ${env.app.port}!`);
-    });
-  })
-  .catch(error => console.log(error));
+routes(app);
+
+app.listen(env.app.port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Server listening on port ${env.app.port}!`);
+});

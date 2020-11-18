@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import T from 'prop-types';
 
 import Store from '../../components/Store';
 import { createShelf, deleteShelf, getShelves, updateShelf } from '../../api';
@@ -33,7 +34,7 @@ const DashboardContainer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (mode === 'update') {
       updateShelf(shelfInfo).then((res) => {
         const updatedShelf = res.data.data;
@@ -53,13 +54,13 @@ const DashboardContainer = () => {
       .catch((err) => {
         throw new Error(`error ${err.message}`)
       })
-    } 
+    }
 
     if (mode === 'create') {
       createShelf(shelfInfo)
       .then((res) => {
         const newShelf = res.data.data;
-  
+
         setShelfInfo({
           name: '',
           description: ''
