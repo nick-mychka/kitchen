@@ -1,5 +1,5 @@
 import React from 'react';
-import T from 'prop-types';
+// import T from 'prop-types';
 
 import Store from '../../components/Store';
 
